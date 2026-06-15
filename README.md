@@ -1,6 +1,6 @@
 # CI/CD Pipeline for HouseRentingSystem (ASP.NET Core MVC)
 
-This repository contains the **HouseRentingSystem** ASP.NET Core MVC application. It includes a fully configured Continuous Integration (CI) workflow using **Jenkins** to automate building, restoring, and testing the application.
+This repository contains the SoftUni **HouseRentingSystem** ASP.NET Core MVC application. It includes a fully configured Continuous Integration (CI) workflow using **Jenkins** to automate building, restoring, and testing the application.
 
 ---
 
@@ -26,16 +26,16 @@ Initialize the local Git repository, apply `.gitignore`, and push the applicatio
 # Initialize local repo
 git init
 
-# Add .gitignore (highly recommended for ASP.NET)
+# Add .gitignore
 dotnet new gitignore
 
 # Stage and commit all files
 git add .
-git commit -m "Initial commit: HouseRentingSystem with tests"
+git commit -m "Initial commit"
 
 # Link and push to GitHub
 git branch -M main
-git remote add origin https://github.com
+git remote add origin https://github.com {repo}
 git push -u origin main
 ```
 
@@ -43,23 +43,6 @@ git push -u origin main
 
 ## Step 3: Jenkins Configuration
 
-### 1. Install Plugins
-* Navigate to `Manage Jenkins` -> `Plugins` -> `Available plugins`.
-* Search for and install the **MSBuild** plugin (Git plugin should already be installed).
-
-### 2. Global Tool Configuration
-* Go to `Manage Jenkins` -> `Tools`.
-* Scroll to **MSBuild installations** and click **Add MSBuild**.
-* Name it (e.g., `MSBuild 2022`) and provide the path to your local `MSBuild.exe`.
-  * *Typical path:* `C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\MSBuild\Current\Bin\MSBuild.exe`
-* Click **Save**.
-  
-<img width="1032" height="424" alt="image" src="https://github.com/user-attachments/assets/555ebfe3-4c0b-4b80-a963-3a7cf083ebf2" />
-
-
----
-
-## Step 4: Jenkins Job Configuration
 1. Open the Jenkins dashboard and click **New Item**.
 2. Select **Pipeline**, give it a name (e.g., `HouseRentingSystem-CI`), and click **OK**.
 3. In the **General** section, check **GitHub project** and enter your repository URL.
@@ -72,7 +55,7 @@ git push -u origin main
 
 ---
 
-## Step 5: Jenkinsfile (The CI Pipeline)
+## Step 4: Jenkinsfile (The CI Pipeline)
 The repository includes a `Jenkinsfile` at the root directory containing the following standard declarative stages:
 
 * **Restore:** Downloads all necessary NuGet packages and project dependencies.
@@ -81,7 +64,7 @@ The repository includes a `Jenkinsfile` at the root directory containing the fol
 
 ---
 
-## Step 6: Testing the Pipeline
+## Step 5: Testing the Pipeline
 1. Go to your Jenkins Job dashboard.
 2. Click **Build Now** to trigger the pipeline manually.
 3. Click on the build number and select **Console Output** to monitor the build progress and test results in real-time.
